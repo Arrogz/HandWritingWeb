@@ -107,7 +107,7 @@ export default function P5Canvas() {
 
           if (canvasX > p.windowWidth * 1.4) {
             shapes = [];
-            p.background(255);
+            p.background("#fafafa");
             canvasX = - p.windowWidth * 2;
             canvas.position(canvasX, 0);
             newP = !newP;
@@ -132,7 +132,7 @@ export default function P5Canvas() {
         canvasX = (p.windowWidth - canvas.width) / 2;
         canvas.position(canvasX, 0);
 
-        p.background(255);
+        p.background("#fafafa");
       };
 
       p.draw = () => {
@@ -188,6 +188,7 @@ export default function P5Canvas() {
         switch (p.key) {
           case "z":
             shapes.pop();
+            p.background("#fafafa");
             break;
 
           case "c":
