@@ -9,13 +9,13 @@ function setup() {
   canvas = createCanvas(windowWidth, windowHeight);
   canvas.position(0,0);
   layer1 = createGraphics(width, height);
-  background(255);
+  background("#fafafa");
   curX = mouseX;
   curY = mouseY;
 }
 
 function draw() {
-  background(255, 10);
+  background("#fafafa", 10);
   noFill();
   stroke(0);
   strokeWeight(5);
@@ -57,7 +57,7 @@ function keyPressed() {
   switch (key) {
     case 'z':
       shapes.pop();
-      background(255);
+      background("#fafafa");
       for (let s of shapes) {
         s.draw();
       }
@@ -74,7 +74,7 @@ function keyPressed() {
       curStrokeWeight = 11;
       break;
     case 'i':
-      background(255);
+      background("#fafafa");
       for (let s of shapes) {
         s.isItalic = s.isItalic == 0 ? 1 : 0;
         s.draw();
@@ -96,7 +96,7 @@ function newPaper() {
         canvasX = 0;
         canvas.position(canvasX, 0);
         shapes = [];
-        background(255);
+        background("#fafafa");
       }
   }
   canvas.position(canvasX, 0);

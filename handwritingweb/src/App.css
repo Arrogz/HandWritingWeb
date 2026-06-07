@@ -183,8 +183,14 @@
   }
 }
 
-.Canvas{
+canvas {
+  border-radius: 12px;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.15),
+    0 0 0 1px rgba(255,255,255,0.1);
 }
