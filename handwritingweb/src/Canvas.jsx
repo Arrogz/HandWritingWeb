@@ -103,23 +103,18 @@ export default function P5Canvas() {
 
       function newPaper() {
         if (newP) {
-          canvasX = p.lerp(
-            canvasX,
-            p.windowWidth + 300,
-            0.05 *
-              ((p.windowWidth + 1000 - canvasX) /
-                p.windowWidth)
-          );
+          canvasX = p.lerp(canvasX, p.windowWidth * 2, 0.05 *((p.windowWidth + 1000 - canvasX) /p.windowWidth));
 
-          if (canvasX > p.windowWidth + 5) {
-            newP = false;
-            canvasX = 0;
-
-            canvas.position(canvasX, 0);
-
+          if (canvasX > p.windowWidth * 1.4) {
             shapes = [];
             p.background(255);
+            canvasX = - p.windowWidth * 2;
+            canvas.position(canvasX, 0);
+            newP = !newP;
           }
+        }
+        else {
+          canvasX = p.lerp(canvasX, (p.windowWidth - canvas.width) / 2, 0.05 *((p.windowWidth + 1000 - canvasX) /p.windowWidth));
         }
 
         canvas.position(canvasX, 0);
@@ -127,12 +122,15 @@ export default function P5Canvas() {
 
       p.setup = () => {
         canvas = p.createCanvas(
-          p.width/2,
-          p.height/2
+          85 * p.windowWidth / 100,
+          65 * p.windowHeight / 100
         );
-
+        
         curX = p.mouseX;
         curY = p.mouseY;
+
+        canvasX = (p.windowWidth - canvas.width) / 2;
+        canvas.position(canvasX, 0);
 
         p.background(255);
       };
@@ -227,8 +225,8 @@ export default function P5Canvas() {
 
       p.windowResized = () => {
         p.resizeCanvas(
-          p.windowWidth/2,
-          p.windowHeight/2
+          85 * p.windowWidth / 100,
+          65 * p.windowHeight / 100
         );
       };
     };
