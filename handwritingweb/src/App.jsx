@@ -12,6 +12,7 @@ function App() {
     <>
       <section id="center">
         <Canvas></Canvas>
+        <div></div>
       </section>
 
       <div className="ticks"></div>
