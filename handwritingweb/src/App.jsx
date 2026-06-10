@@ -12,16 +12,22 @@ function App() {
     <>
       <section id="center">
         <Canvas></Canvas>
-        <div></div>
+        <div id = "help">
+          <h2>Instructions</h2>
+          <ul>
+            <li>Draw with your mouse!</li>
+            <li>Press 'z' to undo</li>
+            <li>Press 'c' to clear</li>
+            <li>Press 'b' to reduce stroke weight</li>
+            <li>Press 'r' to reset stroke weight</li>
+          </ul>
+        </div>
       </section>
 
       <div className="ticks"></div>
 
       <section id="next-steps">
         <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
           <h2>Contact</h2>
           <ul>
             <li>

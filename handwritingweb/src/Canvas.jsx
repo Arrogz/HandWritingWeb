@@ -22,7 +22,6 @@ export default function P5Canvas() {
         constructor(shape, strokeW) {
           this.shape = [...shape];
           this.strokeW = strokeW;
-          this.isItalic = 0;
         }
 
         draw() {
@@ -54,14 +53,7 @@ export default function P5Canvas() {
           p.beginShape();
 
           for (let pt of this.shape) {
-            p.vertex(
-              pt.x +
-                (coreX - minX + 200) *
-                  (1 - pt.y / coreY) /
-                  2 *
-                  this.isItalic,
-              pt.y
-            );
+            p.vertex(pt.x ,pt.y);
           }
 
           p.endShape();
@@ -109,7 +101,7 @@ export default function P5Canvas() {
             shapes = [];
             p.background("#eaeaea");
             canvasX = - p.windowWidth * 2;
-            canvasY = p.windowHeight * 0.7 * 0.025;
+            canvasY = p.windowHeight * 0.7 * 0.05;
             canvas.position(canvasX, canvasY);
             newP = !newP;
           }
@@ -131,7 +123,7 @@ export default function P5Canvas() {
         curY = p.mouseY;
 
         canvasX = (p.windowWidth - canvas.width) / 2;
-        canvasY = p.windowHeight * 0.7 * 0.025;
+        canvasY = p.windowHeight * 0.7 * 0.05;
         canvas.position(canvasX, canvasY);
 
         p.background("#eaeaea");
@@ -146,7 +138,6 @@ export default function P5Canvas() {
 
         newPaper();
 
-        p.line(0, 0, 0, p.height);
 
         curX = p.lerp(curX, p.mouseX, 0.45);
         curY = p.lerp(curY, p.mouseY, 0.45);
@@ -215,12 +206,6 @@ export default function P5Canvas() {
             curStrokeWeight = 11;
             break;
 
-          case "i":
-            shapes.forEach((s) => {
-              s.isItalic = s.isItalic ? 0 : 1;
-            });
-            break;
-
           default:
             break;
         }
@@ -231,7 +216,7 @@ export default function P5Canvas() {
           75 * p.windowWidth / 100,
           65 * p.windowHeight / 100
         );
-        canvasY = p.windowHeight * 0.7 * 0.025;
+        canvasY = p.windowHeight * 0.7 * 0.05;
         canvas.position(canvasX, canvasY);
       };
     };
