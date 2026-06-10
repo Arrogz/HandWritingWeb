@@ -9,11 +9,9 @@ export let isDragging = false;
 
 function App() {
   
-  
   useEffect(() => {
     const draggable = document.getElementById('draggable');
     if(!draggable) return;
-    //console.log(draggable);
 
     let offsetX = 0, offsetY = 0;
 
@@ -24,9 +22,6 @@ function App() {
       isDragging = true;
       offsetX = e.clientX - draggable.offsetLeft;
       offsetY = e.clientY - draggable.offsetTop;
-
-      //console.log(offsetX, offsetY);
-      
     }
 
     const onMouseMove = (e) => {
@@ -39,15 +34,11 @@ function App() {
       offsetY = e.clientY - draggable.offsetTop;
       
     }
-
     
   draggable.addEventListener("mousedown", onMouseDown);
   draggable.addEventListener("mousemove", onMouseMove);
   draggable.addEventListener("mouseup", () => {isDragging = false;});
   draggable.addEventListener("mouseleave", () => {isDragging = false;});
-  
-  
-
 
   }, []);
   const [count, setCount] = useState(0)
@@ -115,7 +106,6 @@ function App() {
     </>
   )
 }
-
 
 export default App
 
