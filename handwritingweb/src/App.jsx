@@ -4,15 +4,58 @@ import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
 import Canvas from './Canvas';
+import { useEffect } from 'react';
+export let isDragging = false;
 
 function App() {
-  const [count, setCount] = useState(0)
+  
+  
+  useEffect(() => {
+    const draggable = document.getElementById('draggable');
+    if(!draggable) return;
+    //console.log(draggable);
 
+    let offsetX = 0, offsetY = 0;
+
+    const onMouseDown = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      isDragging = true;
+      offsetX = e.clientX - draggable.offsetLeft;
+      offsetY = e.clientY - draggable.offsetTop;
+
+      //console.log(offsetX, offsetY);
+      
+    }
+
+    const onMouseMove = (e) => {
+      e.preventDefault();
+      if (isDragging) {
+        draggable.style.left = `${e.clientX - offsetX}px`;
+        draggable.style.top = `${e.clientY - offsetY}px`;
+      }
+      offsetX = e.clientX - draggable.offsetLeft;
+      offsetY = e.clientY - draggable.offsetTop;
+      
+    }
+
+    
+  draggable.addEventListener("mousedown", onMouseDown);
+  draggable.addEventListener("mousemove", onMouseMove);
+  draggable.addEventListener("mouseup", () => {isDragging = false;});
+  draggable.addEventListener("mouseleave", () => {isDragging = false;});
+  
+  
+
+
+  }, []);
+  const [count, setCount] = useState(0)
   return (
     <>
       <section id="center">
-        <Canvas></Canvas>
-        <div id = "help">
+        <Canvas/>
+        <div id = "draggable" className = "unselectable">
           <h2>Instructions</h2>
           <ul>
             <li>Draw with your mouse!</li>
@@ -73,4 +116,7 @@ function App() {
   )
 }
 
+
 export default App
+
+

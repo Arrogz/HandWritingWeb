@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import p5 from "p5";
-
-export default function P5Canvas() {
+import { isDragging } from "./App";
+export default function Canvas() {
   const containerRef = useRef();
 
   useEffect(() => {
@@ -158,6 +158,7 @@ export default function P5Canvas() {
       };
 
       p.mouseDragged = () => {
+        if (isDragging) return;
         if (curStrokeWeight > 0) {
           currentShape.push(
             p.createVector(curX, curY)
@@ -166,6 +167,7 @@ export default function P5Canvas() {
       };
 
       p.mouseReleased = () => {
+        if (isDragging) return;
         if (currentShape.length > 0) {
           const letter = new LetterShape(
             currentShape,

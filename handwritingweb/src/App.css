@@ -194,3 +194,19 @@ canvas {
     0 100px 300px rgba(0,0,0,0.15),
     0 0 0 1px rgba(255,255,255,0.1);
 }
+
+#draggable{
+  position: absolute;
+  background: rgba(20, 20, 20, 0.8);
+  display: grid;
+  width: 20em;
+  height: 12em;
+  color: white;
+  border-radius: 10px;
+  cursor: move;
+
+  z-index: 1000;
+}
+.unselectable {
+  user-select: none;
+}
