@@ -13,7 +13,7 @@ export default function P5Canvas() {
       let curY;
 
       let curStrokeWeight = 11;
-      let canvasX = 0;
+      let canvasX = 0, canvasY = 0;
       let newP = false;
 
       let canvas;
@@ -107,9 +107,10 @@ export default function P5Canvas() {
 
           if (canvasX > p.windowWidth * 1.4) {
             shapes = [];
-            p.background("#fafafa");
+            p.background("#eaeaea");
             canvasX = - p.windowWidth * 2;
-            canvas.position(canvasX, 0);
+            canvasY = p.windowHeight * 0.7 * 0.025;
+            canvas.position(canvasX, canvasY);
             newP = !newP;
           }
         }
@@ -117,12 +118,12 @@ export default function P5Canvas() {
           canvasX = p.lerp(canvasX, (p.windowWidth - canvas.width) / 2, 0.05 *((p.windowWidth + 1000 - canvasX) /p.windowWidth));
         }
 
-        canvas.position(canvasX, 0);
+        canvas.position(canvasX, canvasY);
       }
 
       p.setup = () => {
         canvas = p.createCanvas(
-          85 * p.windowWidth / 100,
+          75 * p.windowWidth / 100,
           65 * p.windowHeight / 100
         );
         
@@ -130,9 +131,10 @@ export default function P5Canvas() {
         curY = p.mouseY;
 
         canvasX = (p.windowWidth - canvas.width) / 2;
-        canvas.position(canvasX, 0);
+        canvasY = p.windowHeight * 0.7 * 0.025;
+        canvas.position(canvasX, canvasY);
 
-        p.background("#fafafa");
+        p.background("#eaeaea");
       };
 
       p.draw = () => {
@@ -188,7 +190,7 @@ export default function P5Canvas() {
         switch (p.key) {
           case "z":
             shapes.pop();
-            p.background("#fafafa");
+            p.background("#eaeaea");
             break;
 
           case "c":
@@ -226,9 +228,11 @@ export default function P5Canvas() {
 
       p.windowResized = () => {
         p.resizeCanvas(
-          85 * p.windowWidth / 100,
+          75 * p.windowWidth / 100,
           65 * p.windowHeight / 100
         );
+        canvasY = p.windowHeight * 0.7 * 0.025;
+        canvas.position(canvasX, canvasY);
       };
     };
 
