@@ -65,7 +65,7 @@ function App() {
           <h2>Contact</h2>
           <ul>
             <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
+              <a href="https://github.com/Arrogz" target="_blank">
                 <svg
                   className="button-icon"
                   role="presentation"
@@ -77,7 +77,7 @@ function App() {
               </a>
             </li>
             <li>
-              <a href="https://chat.vite.dev/" target="_blank">
+              <a href="unknown" target="_blank">
                 <svg
                   className="button-icon"
                   role="presentation"
@@ -89,7 +89,7 @@ function App() {
               </a>
             </li>
             <li>
-              <a href="https://x.com/vite_js" target="_blank">
+              <a href="https://x.com/Arrogz" target="_blank">
                 <svg
                   className="button-icon"
                   role="presentation"

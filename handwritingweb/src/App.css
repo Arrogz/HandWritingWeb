@@ -204,7 +204,6 @@ canvas {
   color: white;
   border-radius: 10px;
   cursor: move;
-
   z-index: 1000;
 }
 .unselectable {
