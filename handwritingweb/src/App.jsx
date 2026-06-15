@@ -38,6 +38,7 @@ function App() {
   draggable.addEventListener("mouseleave", () => {isDragging = false;});
 
   }, []);
+
   const [count, setCount] = useState(0)
   return (
     <>
@@ -53,6 +54,7 @@ function App() {
             <li>Press 'r' to reset stroke weight</li>
             <li>Press 's' to save drawing</li>
             <li>Press 'o' to load drawing</li>
+            <li>Press 'h' to hide instructions</li>
           </ul>
         </div>
       </section>
@@ -105,6 +107,14 @@ function App() {
     </>
   )
 }
+
+document.addEventListener("keydown", (e) => {
+  if(e.key === 'h') 
+    if(draggable.style.display != "none")
+      draggable.style.display = "none";
+    else draggable.style.display = "grid";
+  
+  });
 
 export default App
 
