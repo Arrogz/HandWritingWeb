@@ -113,6 +113,11 @@ export default function Canvas() {
         canvas.position(canvasX, canvasY);
       }
 
+      function exportDrawing() {
+        const json = JSON.stringify(shapes, null, 2);
+        console.log(json);
+      }
+
       p.setup = () => {
         canvas = p.createCanvas(
           75 * p.windowWidth / 100,
