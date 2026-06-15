@@ -94,7 +94,6 @@ export default function Canvas() {
 
       function exportDrawing() {
         const json = JSON.stringify(shapes, null, 1);
-        console.log(json);
         
         const blob = new Blob([json], {
           type: "application/json",
@@ -104,7 +103,10 @@ export default function Canvas() {
 
         const a = document.createElement("a");
         a.href = url;
-        a.download = "drawing.json";
+        
+        let fileName = prompt("Enter file name");
+        a.download = fileName ? `${fileName}.json` : "drawing.json";
+
         a.click();
 
         URL.revokeObjectURL(url);
@@ -225,6 +227,7 @@ export default function Canvas() {
           case "o":
             handleImport();
             break;
+          //for Testing
           case "p":
             console.log(shapes);
             break;
