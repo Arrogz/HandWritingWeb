@@ -25,27 +25,6 @@ export default function Canvas() {
         }
 
         draw() {
-          let maxX = -Infinity;
-          let maxY = -Infinity;
-          let minX = Infinity;
-          let minY = Infinity;
-
-          let coreX = 0;
-          let coreY = 0;
-
-          for (let pt of this.shape) {
-            maxX = Math.max(maxX, pt.x);
-            minX = Math.min(minX, pt.x);
-            maxY = Math.max(maxY, pt.y);
-            minY = Math.min(minY, pt.y);
-
-            coreX += pt.x;
-            coreY += pt.y;
-          }
-
-          coreX /= this.shape.length;
-          coreY /= this.shape.length;
-
           p.noFill();
           p.stroke(0);
           p.strokeWeight(this.strokeW);
@@ -114,7 +93,7 @@ export default function Canvas() {
       }
 
       function exportDrawing() {
-        const json = JSON.stringify(shapes, null, 2);
+        const json = JSON.stringify(shapes, null, 1);
         console.log(json);
         
         const blob = new Blob([json], {
@@ -129,6 +108,19 @@ export default function Canvas() {
         a.click();
 
         URL.revokeObjectURL(url);
+      }
+
+      async function handleImport(){
+        shapes = [];
+        const fileInput = document.getElementById("fileInput");
+        if(!fileInput) return;
+        fileInput.click();
+        fileInput.onchange = async (e) => {
+          const file = e.target.files[0];
+          if (!file) return;
+          shapes = JSON.parse(await file.text()).map(s => new LetterShape(s.shape.map(pt => p.createVector(pt.values[0], pt.values[1])), s.strokeW));
+        }
+        fileInput.value = "";
       }
 
       p.setup = () => {
@@ -231,9 +223,11 @@ export default function Canvas() {
             break;
 
           case "o":
-             const json = prompt("Paste your drawing JSON here:");
-             break;
-
+            handleImport();
+            break;
+          case "p":
+            console.log(shapes);
+            break;
           default:
             break;
         }
@@ -254,5 +248,10 @@ export default function Canvas() {
     return () => instance.remove();
   }, []);
 
-  return <div ref={containerRef} />;
+  return (
+    <section>
+      <div ref={containerRef} />
+      <input type="file" id="fileInput" style={{display: "none"}} />
+    </section>
+  );
 }
