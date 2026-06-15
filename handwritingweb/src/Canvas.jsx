@@ -116,6 +116,19 @@ export default function Canvas() {
       function exportDrawing() {
         const json = JSON.stringify(shapes, null, 2);
         console.log(json);
+        
+        const blob = new Blob([json], {
+          type: "application/json",
+        });
+
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "drawing.json";
+        a.click();
+
+        URL.revokeObjectURL(url);
       }
 
       p.setup = () => {
@@ -212,6 +225,14 @@ export default function Canvas() {
           case "r":
             curStrokeWeight = 11;
             break;
+
+          case "s":
+            exportDrawing();
+            break;
+
+          case "o":
+             const json = prompt("Paste your drawing JSON here:");
+             break;
 
           default:
             break;

@@ -51,6 +51,8 @@ function App() {
             <li>Press 'c' to clear</li>
             <li>Press 'b' to reduce stroke weight</li>
             <li>Press 'r' to reset stroke weight</li>
+            <li>Press 's' to save drawing</li>
+            <li>Press 'o' to load drawing</li>
           </ul>
         </div>
       </section>
