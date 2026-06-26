@@ -3,45 +3,11 @@ import './App.css'
 import Canvas from './Canvas';
 import { useEffect } from 'react';
 export let isDragging = false;
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
-function App() {
-  
-  useEffect(() => {
-    const draggable = document.getElementById('draggable');
-    if(!draggable) return;
-
-    let offsetX = 0, offsetY = 0;
-
-    const onMouseDown = (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-
-      isDragging = true;
-      offsetX = e.clientX - draggable.offsetLeft;
-      offsetY = e.clientY - draggable.offsetTop;
-    }
-
-    const onMouseMove = (e) => {
-      e.preventDefault();
-      if (isDragging) {
-        draggable.style.left = `${e.clientX - offsetX}px`;
-        draggable.style.top = `${e.clientY - offsetY}px`;
-      }
-      offsetX = e.clientX - draggable.offsetLeft;
-      offsetY = e.clientY - draggable.offsetTop;
-      
-    }
-    
-  draggable.addEventListener("mousedown", onMouseDown);
-  draggable.addEventListener("mousemove", onMouseMove);
-  draggable.addEventListener("mouseup", () => {isDragging = false;});
-  draggable.addEventListener("mouseleave", () => {isDragging = false;});
-
-  }, []);
-
-  const [count, setCount] = useState(0)
+function Home() {
   return (
-    <>
+    <div>
       <section id="center">
         <Canvas/>
         <div id = "draggable" className = "unselectable">
@@ -78,7 +44,7 @@ function App() {
               </a>
             </li>
             <li>
-              <a href="unknown" target="_blank">
+              <a href="/contact" target="_top">
                 <svg
                   className="button-icon"
                   role="presentation"
@@ -90,7 +56,7 @@ function App() {
               </a>
             </li>
             <li>
-              <a href="https://x.com/Arrogz" target="_blank">
+              <a href="/contact" target="_blank">
                 <svg
                   className="button-icon"
                   role="presentation"
@@ -104,7 +70,56 @@ function App() {
           </ul>
         </div>
       </section>
-    </>
+    </div>
+  );
+}
+
+function Contact() {
+  return <h1>Oops!</h1>;
+}
+
+function App() {
+  useEffect(() => {
+    const draggable = document.getElementById('draggable');
+    if(!draggable) return;
+
+    let offsetX = 0, offsetY = 0;
+
+    const onMouseDown = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      isDragging = true;
+      offsetX = e.clientX - draggable.offsetLeft;
+      offsetY = e.clientY - draggable.offsetTop;
+    }
+
+    const onMouseMove = (e) => {
+      e.preventDefault();
+      if (isDragging) {
+        draggable.style.left = `${e.clientX - offsetX}px`;
+        draggable.style.top = `${e.clientY - offsetY}px`;
+      }
+      offsetX = e.clientX - draggable.offsetLeft;
+      offsetY = e.clientY - draggable.offsetTop;
+      
+    }
+    
+  draggable.addEventListener("mousedown", onMouseDown);
+  draggable.addEventListener("mousemove", onMouseMove);
+  draggable.addEventListener("mouseup", () => {isDragging = false;});
+  draggable.addEventListener("mouseleave", () => {isDragging = false;});
+
+  }, []);
+
+  const [count, setCount] = useState(0)
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
