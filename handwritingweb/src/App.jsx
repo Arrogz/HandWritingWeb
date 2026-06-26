@@ -44,7 +44,7 @@ function Home() {
               </a>
             </li>
             <li>
-              <a href="/contact" target="_top">
+              <a href="/contact" target="_self">
                 <svg
                   className="button-icon"
                   role="presentation"
@@ -56,7 +56,7 @@ function Home() {
               </a>
             </li>
             <li>
-              <a href="/contact" target="_blank">
+              <a href="/contact" target="_self">
                 <svg
                   className="button-icon"
                   role="presentation"
@@ -75,7 +75,14 @@ function Home() {
 }
 
 function Contact() {
-  return <h1>Oops!</h1>;
+  return (
+    <div id="contact" onClick = {() => {window.open('/', '_self')}}>
+      <section>
+        <h1>Oops!</h1>
+        <h2 >Contact information is not available at this time.</h2>
+      </section>
+    </div>
+  );
 }
 
 function App() {
